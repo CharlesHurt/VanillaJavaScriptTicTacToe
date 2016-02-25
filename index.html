@@ -4,13 +4,116 @@
   <meta charset="UTF-8">
   <title>Tic Tac Toe</title>
 <style>
+.cTTT {
+  width:450px;
+  height:450px;
+  position:absolute;
+  left:50px;
+  top:50px;
+  z-index:0px;
+}
+
+.cR1C1 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:70px;
+  top:70px;
+  z-index:1px;
+}
+
+.cR1C2 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:220px;
+  top:70px;
+  z-index:1px;
+}
+
+.cR1C3 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:370px;
+  top:70px;
+  z-index:1px;
+}
+
+.cR2C1 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:70px;
+  top:220px;
+  z-index:1px;
+}
+
+.cR2C2 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:220px;
+  top:220px;
+  z-index:1px;
+}
+
+.cR2C3 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:370px;
+  top:370px;
+  z-index:1px;
+}
+
+.cR3C1 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:70px;
+  top:370px;
+  z-index:1px;
+}
+
+.cR3C2 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:220px;
+  top:370px;
+  z-index:1px;
+}
+
+.cR3C3 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:370px;
+  top:220px;
+  z-index:1px;
+}
 
 </style>
 </head>
 <body>
   <h3>Welcome to your friendly little Tic-Tac-Toe Game.</h3>
-  <h3>First things first, you on the left it's your turn.  I decide if you are "X" or "O"
-  and you will not know until you click on a cell.</h3>
+  <h6>The fine print: First things first, you on the left it's your turn.  I decide if you are "X" or "O"
+  and you will not know until you click on a cell.</h6>
+  <img src="ttt.jpg" class='cTTT' alt="">
+
+  <img src="O1.png" class='cR1C1' alt="">
+  <img src="O2.png" class='cR1C2' alt="">
+  <img src="O3.png" class='cR1C3' alt="">
+
+  <img src="O4.png" class='cR2C1' alt="">
+  <img src="O5.png" class='cR2C2' alt="">
+  <img src="X1.png" class='cR2C3' alt="">
+
+  <img src="X2.png" class='cR3C1' alt="">
+  <img src="X3.png" class='cR3C2' alt="">
+  <img src="X4.png" class='cR3C3' alt="">
+  <hr>
   <table>
     <tr>
       <td class='cRow1 cCol1 cDiag1'>*</td>
