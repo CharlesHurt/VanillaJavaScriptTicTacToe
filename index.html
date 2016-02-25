@@ -180,6 +180,14 @@ var R3C3_Ref
 var isX = false
 var nextX = 1
 var nextO = 1
+
+var countR1 = 0
+var countR2 = 0
+var countR3 = 0
+var runningClasses = ''
+var theCell = ''
+var rawData =[]
+
 document.addEventListener('DOMContentLoaded', init)
 
 function init() {
@@ -194,6 +202,10 @@ function init() {
   R3C1_Ref = g('IdR3C1')
   R3C2_Ref = g('IdR3C2')
   R3C3_Ref = g('IdR3C3')
+
+  rawData[0] = ['','','']
+  rawData[1] = ['','','']
+  rawData[2] = ['','','']
 /*
   g('IdR1C1').addEventListenter('mouseover', function() {
 
@@ -219,26 +231,50 @@ function doMouseOut() {
   console.log('MouseOut')
 }
 
-
-
 function doClick(e) {
   if (e.target.src.indexOf('Clear') !== -1) { // Disable further clicks
+    var targetClass = e.target.classList[0]
+    var row = targetClass.charAt(2) - 1
+    var col = targetClass.charAt(4) - 1
 
     if (isX) {
       e.target.src='X' + nextX + '.png'
+      rawData[row][col] = 1
       nextX++
     } else {
       e.target.src='O' + nextO + '.png'
+      rawData[row][col] = 0
       nextO++
     }
-
-    checkForWin()
-    isX = ! isX
+debugger
+    updateStatus()
   }
 }
 
-function checkForWin() {
+function updateStatus() {
+  var elementList = document.querySelectorAll(".cCell")
+  for (var i = 0; i < elementList.length; ++i) {
+    runningClasses = ''
+    for (var j = 0; j < elementList[i].classList.length; j++) {
+      runningClasses += elementList[i].classList[j] + ' '
+    }
+    //console.log("runningClasses:" + runningClasses)
+    //debugger
+    var classString = 'x'//elementList[i].classList.join(' ')
+    if (runningClasses.indexOf('R1') !== -1) {
+      countR1++
+    }
+    if (runningClasses.indexOf('R2') !== -1) {
+      countR2++
+    }
+    if (runningClasses.indexOf('R3') !== -1) {
+      countR3++
+    }
 
+    //elementList[i].style.visibility = 'hidden' // v.s. visible
+  }
+  console.log('countR1 +...' + countR1 + ' ' + countR2 + ' ' + countR3)
+  isX = ! isX
 }
 
 function x(e) {
