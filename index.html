@@ -94,43 +94,67 @@
   z-index:1px;
 }
 
+#IdStartGame {
+
+}
+
+#IdResetGame {
+
+}
+.cButton {
+
+}
+
+.cTitle {
+  font-family:sans-serif;
+  left:60px;
+  top:-10px;
+  position:absolute;
+  z-index:1px;
+}
+
+#IdBottomPanel {
+  width:600px;
+  left:100px;
+  top:500px;
+  position:absolute;
+  z-index:1px;
+}
+
+.cHidden {
+  display:none;
+}
+
+.cBlueBorder {
+  border:3px solid blue;
+}
 </style>
 </head>
 <body>
-  <h3>Welcome to your friendly little Tic-Tac-Toe Game.</h3>
-  <h6>The fine print: First things first, you on the left it's your turn.  I decide if you are "X" or "O"
-  and you will not know until you click on a cell.</h6>
+  <h3 class='cTitle'>Welcome to your friendly little Tic-Tac-Toe Game.</h3>
+
   <img src="ttt.jpg" class='cTTT' alt="">
 
-  <img src="O1.png" class='cR1C1' alt="">
-  <img src="O2.png" class='cR1C2' alt="">
-  <img src="O3.png" class='cR1C3' alt="">
+  <img id='IdR1C1' src="O1.png" class='cR1C1 cCell' alt="" >
+  <img id='IdR1C2' src="O2.png" class='cR1C2 cCell' alt="">
+  <img id='IdR1C3' src="O3.png" class='cR1C3 cCell' alt="">
 
-  <img src="O4.png" class='cR2C1' alt="">
-  <img src="O5.png" class='cR2C2' alt="">
-  <img src="X1.png" class='cR2C3' alt="">
+  <img id='IdR2C1' src="O4.png" class='cR2C1 cCell' alt="">
+  <img id='IdR2C2' src="O5.png" class='cR2C2 cCell' alt="">
+  <img id='IdR2C3' src="X1.png" class='cR2C3 cCell' alt="">
 
-  <img src="X2.png" class='cR3C1' alt="">
-  <img src="X3.png" class='cR3C2' alt="">
-  <img src="X4.png" class='cR3C3' alt="">
-  <hr>
-  <table>
-    <tr>
-      <td class='cRow1 cCol1 cDiag1'>*</td>
-      <td class='cRow1 cCol2'>*</td>
-      <td class='cRow1 cCol3 cDiag2'>*</td>
-    </tr>
-    <tr>
-      <td class='cRow2 cCol1'></td>
-      <td class='cRow2 cCol2 cDiag1 cDiag2'></td>
-      <td class='cRow2 cCol3'></td>
-    </tr>
-    <tr>
-      <td class='cRow3 cCol1 cDiag2'></td>
-      <td class='cRow3 cCol2 cDiag'></td>
-      <td class='cRow3 cCol3 cDiag1'></td>
-    </tr>
-  </table>
+  <img id='IdR3C1' src="X2.png" class='cR3C1 cCell' alt="">
+  <img id='IdR3C2' src="X3.png" class='cR3C2 cCell' alt="">
+  <img id='IdR3C3' src="X4.png" class='cR3C3 cCell' alt="">
+
+<div id='IdBottomPanel'>
+  <h6>The fine print: First things first, ..................</h6>
+  <span class='cLeftPlayer cHidden'>You, on the left, It's your turn!</span>
+  <span class='cRightPlayer cHidden'>OK you on the right it's your turn now</span><br>
+  <button id='IdStartGame' class='cButton'>Start Game</button>
+  <button id='IdResetGame' class='cButton'>Reset Game</button>
+</div>
+
 
 <script>
 // Start w/vars
@@ -139,7 +163,59 @@
 var row1Array = ['','','']
 var row2Array = row1Array.concat() // Using Cades array copy strategy
 var row2Array = row1Array.concat()
+var curState = 'Left'
 
+var R1C1_Ref
+var R1C2_Ref
+var R1C3_Ref
+
+var R2C1_Ref
+var R2C2_Ref
+var R2C3_Ref
+
+var R3C1_Ref
+var R3C2_Ref
+var R3C3_Ref
+
+document.addEventListener('DOMContentLoaded', init)
+
+function init() {
+  R1C1_Ref = g('IdR1C1')
+  R1C2_Ref = g('IdR1C2')
+  R1C3_Ref = g('IdR1C3')
+
+  R2C1_Ref = g('IdR2C1')
+  R2C2_Ref = g('IdR2C2')
+  R2C3_Ref = g('IdR2C3')
+
+  R3C1_Ref = g('IdR3C1')
+  R3C2_Ref = g('IdR3C2')
+  R3C3_Ref = g('IdR3C3')
+/*
+  g('IdR1C1').addEventListenter('mouseover', function() {
+
+  })
+  R1C1_Ref.addEventListener('click', doClick)
+*/
+}
+
+function doClick() {
+
+}
+
+function g() {
+  return document.getElementById(arguments[0])
+}
+
+function setBorder() {
+  arguments[0].classList.add('cBlueBorder')
+}
+
+function removeBorder() {
+  arguments[0].classList.remove('cBlueBorder')
+}
+
+//border:1px solid blue
 </script>
 </body>
 </html>
