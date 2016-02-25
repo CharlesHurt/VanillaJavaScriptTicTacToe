@@ -135,21 +135,21 @@
 
   <img src="ttt.jpg" class='cTTT' alt="">
 
-  <img id='IdR1C1' src="O1.png" class='cR1C1 cCell' alt="" >
-  <img id='IdR1C2' src="O2.png" class='cR1C2 cCell' alt="">
-  <img id='IdR1C3' src="O3.png" class='cR1C3 cCell' alt="">
+  <img id='IdR1C1' src="Clear.png" class='cR1C1 cCell' alt="" >
+  <img id='IdR1C2' src="Clear.png" class='cR1C2 cCell' alt="">
+  <img id='IdR1C3' src="Clear.png" class='cR1C3 cCell' alt="">
 
-  <img id='IdR2C1' src="O4.png" class='cR2C1 cCell' alt="">
-  <img id='IdR2C2' src="O5.png" class='cR2C2 cCell' alt="">
-  <img id='IdR2C3' src="X1.png" class='cR2C3 cCell' alt="">
+  <img id='IdR2C1' src="Clear.png" class='cR2C1 cCell' alt="">
+  <img id='IdR2C2' src="Clear.png" class='cR2C2 cCell' alt="">
+  <img id='IdR2C3' src="Clear.png" class='cR2C3 cCell' alt="">
 
-  <img id='IdR3C1' src="X2.png" class='cR3C1 cCell' alt="">
-  <img id='IdR3C2' src="X3.png" class='cR3C2 cCell' alt="">
-  <img id='IdR3C3' src="X4.png" class='cR3C3 cCell' alt="">
+  <img id='IdR3C1' src="Clear.png" class='cR3C1 cCell' alt="">
+  <img id='IdR3C2' src="Clear.png" class='cR3C2 cCell' alt="">
+  <img id='IdR3C3' src="Clear.png" class='cR3C3 cCell' alt="">
 
 <div id='IdBottomPanel'>
   <h6>The fine print: First things first, ..................</h6>
-  <span class='cLeftPlayer cHidden'>You, on the left, It's your turn!</span>
+  <span class='cLeftPlayer cHidden'>You, on the left, It's your turn</span>
   <span class='cRightPlayer cHidden'>OK you on the right it's your turn now</span><br>
   <button id='IdStartGame' class='cButton'>Start Game</button>
   <button id='IdResetGame' class='cButton'>Reset Game</button>
@@ -157,6 +157,7 @@
 
 
 <script>
+'use strict'
 // Start w/vars
 // TODO factor this out
 // TODO factor our the style sheet
@@ -176,7 +177,9 @@ var R2C3_Ref
 var R3C1_Ref
 var R3C2_Ref
 var R3C3_Ref
-
+var isX = false
+var nextX = 1
+var nextO = 1
 document.addEventListener('DOMContentLoaded', init)
 
 function init() {
@@ -197,10 +200,49 @@ function init() {
   })
   R1C1_Ref.addEventListener('click', doClick)
 */
+  //document.querySelectorAll(".cCell").addEventListener('click', doClick)
+  var elementList = document.querySelectorAll(".cCell")
+  for (var i = 0; i < elementList.length; ++i) {
+
+    elementList[i].addEventListener('click', doClick)
+    //elementList[i].style.visibility = 'hidden' // v.s. visible
+  }
+  //.addEventListener('mouseover', function() {})
+  //document.querySelectorAll(".cCell").addEventListener('mouseout', doMouseOut)
 }
 
-function doClick() {
+function doMouseOver() {
+  console.log('MouseOver')
+}
 
+function doMouseOut() {
+  console.log('MouseOut')
+}
+
+
+
+function doClick(e) {
+  if (e.target.src.indexOf('Clear') !== -1) { // Disable further clicks
+
+    if (isX) {
+      e.target.src='X' + nextX + '.png'
+      nextX++
+    } else {
+      e.target.src='O' + nextO + '.png'
+      nextO++
+    }
+
+    checkForWin()
+    isX = ! isX
+  }
+}
+
+function checkForWin() {
+
+}
+
+function x(e) {
+  //var boxes = document.getElementsByClassName('cBox')
 }
 
 function g() {
@@ -215,7 +257,7 @@ function removeBorder() {
   arguments[0].classList.remove('cBlueBorder')
 }
 
-//border:1px solid blue
+
 </script>
 </body>
 </html>
