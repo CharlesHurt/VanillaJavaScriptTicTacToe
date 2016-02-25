@@ -51,6 +51,10 @@ function init() {
   rawData[0] = [999,999,999]
   rawData[1] = [999,999,999]
   rawData[2] = [999,999,999]
+
+  g('IdResetButton').addEventListener('click', resetGame)
+  nextX=1
+  nextO=1
 /*
   g('IdR1C1').addEventListenter('mouseover', function() {
 
@@ -77,7 +81,7 @@ function doMouseOut() {
 }
 
 function doClick(e) {
-  if (e.target.src.indexOf('Clear') !== -1) { // Disable further clicks
+  if ((e.target.src.indexOf('Clear') !== -1) || somebodyWon) { // Disable further clicks
     clickCount++
     var targetClass = e.target.classList[0]
     var row = targetClass.charAt(2) - 1
@@ -148,8 +152,32 @@ function updateStatus(row, col) {
   }
 }
 
-function x(e) {
-  //var boxes = document.getElementsByClassName('cBox')
+function resetGame() {
+  R1C1_Ref.src='Clear.png'
+  R1C2_Ref.src='Clear.png'
+  R1C3_Ref.src='Clear.png'
+
+  R2C1_Ref.src='Clear.png'
+  R2C2_Ref.src='Clear.png'
+  R2C3_Ref.src='Clear.png'
+
+  R3C1_Ref.src='Clear.png'
+  R3C2_Ref.src='Clear.png'
+  R3C3_Ref.src='Clear.png'
+
+  somebodyWon = false
+  clickCount = 0
+
+  rawData[0][0] = 999
+  rawData[0][1] = 999
+  rawData[0][2] = 999
+  rawData[1][0] = 999
+  rawData[1][1] = 999
+  rawData[1][2] = 999
+  rawData[2][0] = 999
+  rawData[2][1] = 999
+  rawData[2][2] = 999
+
 }
 
 function g() {
