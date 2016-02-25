@@ -63,7 +63,7 @@
   height:100px;
   position:absolute;
   left:370px;
-  top:370px;
+  top:220px;
   z-index:1px;
 }
 
@@ -90,7 +90,7 @@
   height:100px;
   position:absolute;
   left:370px;
-  top:220px;
+  top:370px;
   z-index:1px;
 }
 
@@ -158,6 +158,7 @@
 
 <script>
 'use strict'
+function showClick() {alert(1)}
 // Start w/vars
 // TODO factor this out
 // TODO factor our the style sheet
@@ -177,6 +178,7 @@ var R2C3_Ref
 var R3C1_Ref
 var R3C2_Ref
 var R3C3_Ref
+
 var isX = false
 var nextX = 1
 var nextO = 1
@@ -187,6 +189,8 @@ var countR3 = 0
 var runningClasses = ''
 var theCell = ''
 var rawData =[]
+var clickCount = 0
+var somebodyWon = false
 
 document.addEventListener('DOMContentLoaded', init)
 
@@ -203,9 +207,9 @@ function init() {
   R3C2_Ref = g('IdR3C2')
   R3C3_Ref = g('IdR3C3')
 
-  rawData[0] = ['','','']
-  rawData[1] = ['','','']
-  rawData[2] = ['','','']
+  rawData[0] = [999,999,999]
+  rawData[1] = [999,999,999]
+  rawData[2] = [999,999,999]
 /*
   g('IdR1C1').addEventListenter('mouseover', function() {
 
@@ -233,48 +237,70 @@ function doMouseOut() {
 
 function doClick(e) {
   if (e.target.src.indexOf('Clear') !== -1) { // Disable further clicks
+    clickCount++
     var targetClass = e.target.classList[0]
     var row = targetClass.charAt(2) - 1
     var col = targetClass.charAt(4) - 1
-
+    //debugger
+    console.log('r/c:' + row + '/' + col)
+//debugger
     if (isX) {
       e.target.src='X' + nextX + '.png'
-      rawData[row][col] = 1
+      rawData[row][col] = 10
       nextX++
     } else {
       e.target.src='O' + nextO + '.png'
-      rawData[row][col] = 0
+      rawData[row][col] = 1
       nextO++
     }
-debugger
-    updateStatus()
+
+    updateStatus(row, col)
   }
+
+  isX = ! isX
 }
 
-function updateStatus() {
-  var elementList = document.querySelectorAll(".cCell")
-  for (var i = 0; i < elementList.length; ++i) {
-    runningClasses = ''
-    for (var j = 0; j < elementList[i].classList.length; j++) {
-      runningClasses += elementList[i].classList[j] + ' '
-    }
-    //console.log("runningClasses:" + runningClasses)
-    //debugger
-    var classString = 'x'//elementList[i].classList.join(' ')
-    if (runningClasses.indexOf('R1') !== -1) {
-      countR1++
-    }
-    if (runningClasses.indexOf('R2') !== -1) {
-      countR2++
-    }
-    if (runningClasses.indexOf('R3') !== -1) {
-      countR3++
-    }
+function updateStatus(row, col) {
+console.log('row  0=' + rawData[0][0] + '/' + rawData[0][1] + '/' + rawData[0][2])
+console.log('row  1=' + rawData[1][0] + '/' + rawData[1][1] + '/' + rawData[1][2])
+console.log('row  2=' + rawData[2][0] + '/' + rawData[2][1] + '/' + rawData[2][2])
 
-    //elementList[i].style.visibility = 'hidden' // v.s. visible
+console.log('diag 1=' + rawData[0][0] + '/' + rawData[1][1] + '/' + rawData[2][2])
+console.log('diag 2=' + rawData[0][2] + '/' + rawData[1][1] + '/' + rawData[2][0])
+
+
+  if (   ((rawData[0][0] + rawData[0][1] + rawData[0][2]) === 3)
+      || ((rawData[1][0] + rawData[1][1] + rawData[1][2]) === 3)
+      || ((rawData[2][0] + rawData[2][1] + rawData[2][2]) === 3)
+
+      || ((rawData[0][0] + rawData[1][0] + rawData[2][0]) === 3)
+      || ((rawData[0][1] + rawData[1][1] + rawData[2][1]) === 3)
+      || ((rawData[0][2] + rawData[1][2] + rawData[2][2]) === 3)
+
+      || ((rawData[0][0] + rawData[1][1] + rawData[2][2]) === 3)
+      || ((rawData[0][2] + rawData[1][1] + rawData[2][0]) === 3)) {
+    alert('O won')
+    somebodyWon = true
   }
-  console.log('countR1 +...' + countR1 + ' ' + countR2 + ' ' + countR3)
-  isX = ! isX
+
+  if (   ((rawData[0][0] + rawData[0][1] + rawData[0][2]) === 30)
+      || ((rawData[1][0] + rawData[1][1] + rawData[1][2]) === 30)
+      || ((rawData[2][0] + rawData[2][1] + rawData[2][2]) === 30)
+
+      || ((rawData[0][0] + rawData[1][0] + rawData[2][0]) === 30)
+      || ((rawData[0][1] + rawData[1][1] + rawData[2][1]) === 30)
+      || ((rawData[0][2] + rawData[1][2] + rawData[2][2]) === 30)
+
+      || ((rawData[0][0] + rawData[1][1] + rawData[2][2]) === 30)
+      || ((rawData[0][2] + rawData[1][1] + rawData[2][0]) === 30)) {
+    alert('X won')
+    somebodyWon = true
+  }
+  if (!somebodyWon) {
+    if (clickCount === 9) {
+      alert('It a ddraw')
+    }
+  }
 }
 
 function x(e) {
