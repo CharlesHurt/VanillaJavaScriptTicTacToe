@@ -1,0 +1,124 @@
+.cTTT {
+  width:450px;
+  height:450px;
+  position:absolute;
+  left:50px;
+  top:50px;
+  z-index:0px;
+}
+
+.cR1C1 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:70px;
+  top:70px;
+  z-index:1px;
+}
+
+.cR1C2 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:220px;
+  top:70px;
+  z-index:1px;
+}
+
+.cR1C3 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:370px;
+  top:70px;
+  z-index:1px;
+}
+
+.cR2C1 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:70px;
+  top:220px;
+  z-index:1px;
+}
+
+.cR2C2 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:220px;
+  top:220px;
+  z-index:1px;
+}
+
+.cR2C3 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:370px;
+  top:220px;
+  z-index:1px;
+}
+
+.cR3C1 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:70px;
+  top:370px;
+  z-index:1px;
+}
+
+.cR3C2 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:220px;
+  top:370px;
+  z-index:1px;
+}
+
+.cR3C3 {
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:370px;
+  top:370px;
+  z-index:1px;
+}
+
+#IdStartGame {
+
+}
+
+#IdResetGame {
+
+}
+.cButton {
+
+}
+
+.cTitle {
+  font-family:sans-serif;
+  left:60px;
+  top:-10px;
+  position:absolute;
+  z-index:1px;
+}
+
+#IdBottomPanel {
+  width:600px;
+  left:100px;
+  top:500px;
+  position:absolute;
+  z-index:1px;
+}
+
+.cHidden {
+  display:none;
+}
+
+.cBlueBorder {
+  border:3px solid blue;
+}
