@@ -86,10 +86,14 @@ function doClick(e) {
     //console.log('r/c:' + row + '/' + col)
 //debugger
     if (isX) {
+      g('IdLeft').classList.remove('cHidden')
+      g('IdRight').classList.add('cHidden')
       e.target.src='X' + nextX + '.png'
       rawData[row][col] = 10
       nextX++
     } else {
+      g('IdLeft').classList.add('cHidden')
+      g('IdRight').classList.remove('cHidden')
       e.target.src='O' + nextO + '.png'
       rawData[row][col] = 1
       nextO++
